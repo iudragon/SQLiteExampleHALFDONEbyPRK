@@ -1,5 +1,6 @@
 package dragon.bakuman.iu.sqliteexample;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -19,8 +20,8 @@ public class ContactDbHelper extends SQLiteOpenHelper {
 
     public static final String DROP_TABLE = "drop table if exists " + ContactContract.ContactEntry.TABLE_NAME;
 
-    public ContactDbHelper(Context context){
-        
+    public ContactDbHelper(Context context) {
+
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         Log.d(TAG, "ContactDbHelper: Database created. ");
 
@@ -41,4 +42,23 @@ public class ContactDbHelper extends SQLiteOpenHelper {
         onCreate(db);
 
     }
+
+    //method to put information in the table
+    public void addContact(int id, String name, String email, SQLiteDatabase database) {
+
+        ContentValues contentValues = new ContentValues();
+
+        //now add information in the form of name, value pair in the contentValues object.
+        contentValues.put(ContactContract.ContactEntry.CONTACT_ID, id);
+        contentValues.put(ContactContract.ContactEntry.NAME, name);
+        contentValues.put(ContactContract.ContactEntry.EMAIL, email);
+
+        //now add this information in the table
+        //this statement add one row to the table
+        database.insert(ContactContract.ContactEntry.TABLE_NAME, null, contentValues);
+
+        Log.d(TAG, "addContact: One row is inserted.");
+
+    }
+
 }
