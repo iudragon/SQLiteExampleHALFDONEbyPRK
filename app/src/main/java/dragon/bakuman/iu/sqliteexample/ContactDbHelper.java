@@ -15,9 +15,9 @@ public class ContactDbHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
 
     //query to create table
-    public static final String CREATE_TABLE = "create_table " + ContactContract.ContactEntry.TABLE_NAME + "{" + ContactContract.ContactEntry.CONTACT_ID + " number, " + ContactContract.ContactEntry.NAME + " text, " + ContactContract.ContactEntry.EMAIL + " text};";
+    public static final String CREATE_TABLE = "create table " + ContactContract.ContactEntry.TABLE_NAME + "(" + ContactContract.ContactEntry.CONTACT_ID + " number, " + ContactContract.ContactEntry.NAME + " text, " + ContactContract.ContactEntry.EMAIL + " text);";
 
-    public static final String DROP_TABLE = "drop_table if exists " + ContactContract.ContactEntry.TABLE_NAME;
+    public static final String DROP_TABLE = "drop table if exists " + ContactContract.ContactEntry.TABLE_NAME;
 
     public ContactDbHelper(Context context){
         
